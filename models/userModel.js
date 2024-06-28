@@ -28,11 +28,14 @@ const UserSchema = mongoose.Schema({
     {timestamps: true}
 );
 
-UserSchema.pre('save', async function(next) {
-    const user = this; 
-    user.password = await bcrypt.hash(user.password, 10);
-    next();
-});
+
+//                                                  CAN BE HASHED HERE AS WELL                                      //
+
+// UserSchema.pre('save', async function(next) {
+//     const user = this; 
+//     user.password = await bcrypt.hash(user.password, 10);
+//     next();
+// });
 
 const User = mongoose.model("user",UserSchema);
 
