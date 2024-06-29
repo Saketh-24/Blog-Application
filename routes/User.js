@@ -13,11 +13,15 @@ router.get("/signup", (req, res) => {
     res.render("SignUp");
 });
 
+router.get("/logout",(req,res)=>
+{
+    res.clearCookie("token").redirect("/")
+})
  
 
 router.post("/signin", Authentication, (req, res) => {
     const token = createToken(req.user);
-    res.cookie("token", token).render("home");
+    res.cookie("token", token).redirect("/");
 });
 
 router.post("/signup", async (req, res) => {
