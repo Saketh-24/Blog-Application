@@ -5,14 +5,14 @@
 </head>
 <body>
     <%- include('./partials/nav') %>
-    <div class="blogs container mt-5 d-flex justify-content-space-between align-items-center">
+    <div class="blogs container mt-5 d-flex justify-content-space-between align-items-center" style="flex-wrap: wrap;">
     <% blogs.forEach(blog => { %>
-        <div class="card" style="width: 18rem; height: 550px; margin: 20px;">
-            <img src="<%= blog.ImageURL %>" class="card-img-top" style=" height:300px; overflow: hidden;">
+        <div class="card" style="width: 17rem; height: 470px; margin: 15px;">
+            <img src="<%= blog.ImageURL %>" class="card-img-top" style=" height:270px; overflow: hidden;">
             <div class="card-body">
                 <h5 class="card-title"><%= blog.Title %></h5>
-                <p class="card-text" style="height: 220px; overflow: hidden;" ><%= blog.Body %></p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <p class="card-text" style="height: 100px; overflow: hidden;" ><%= blog.Body %></p>
+                <a href="/addBlog/<%= blog._id %>" class="btn btn-primary">View</a>
             </div>
         </div>
     <% }) %>

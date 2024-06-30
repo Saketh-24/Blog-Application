@@ -26,7 +26,10 @@ router.post("/signin", Authentication, (req, res) => {
 
 router.post("/signup", async (req, res) => {
     const { fullname, email, password } = req.body;
-
+    if(!fullname || !email || !password)
+        {
+            return res.render("SignUp",{error:"Please provide all the fields"})
+        }
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
         await User.create({

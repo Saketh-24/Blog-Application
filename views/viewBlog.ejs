@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+    <h1 class="d-flex justify-content-center"><%= blog.Title %></h1>
+    <div class="card">
+        <div class="d-flex justify-content-center align-items-center" style="height: 500px;">
+            <img src="<%= blog.ImageURL %>" class="card-img-top" style="max-width: 50%; max-height: 80%;">
+        </div>
+        <div class="card-body">
+            <p class="card-text"><%= blog.Body %></p>
+        </div>
+        <div class="card-body">
+            <img src="<%= blog.createdBy.profileImageURL %>" class="card-img-top" style="max-width: 50px">
+            <span style="font-size: x-large; padding-left: 3px;"><%= blog.createdBy.fullname %></span>
+        </div>
+    </div>
+    <%- include('./partials/script') %>
+</body>
+</html>
