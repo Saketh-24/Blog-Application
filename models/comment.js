@@ -4,13 +4,12 @@ const commentSchema = mongoose.Schema({
     content:{
         type:String,
         required:true,
-        unique:true
     },
 
     BlogId:
     {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Blogs",
+        ref: "blogs",
     },
 
     createdBy:

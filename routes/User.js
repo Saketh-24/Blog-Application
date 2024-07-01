@@ -20,6 +20,7 @@ router.get("/logout",(req,res)=>
  
 
 router.post("/signin", Authentication, (req, res) => {
+    console.log(req.user)
     const token = createToken(req.user);
     res.cookie("token", token).redirect("/");
 });

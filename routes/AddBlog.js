@@ -5,6 +5,7 @@ const multer = require('multer');
 const path = require('path');
 const validateToken = require('../utils/authentication');
 const { checkCookie } = require('../middleware/authentication');
+const Comments = require('../models/comment');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -40,7 +41,8 @@ router.get('/:id',checkCookie("token"), async (req, res) => {
     if(req.cookies["token"])
       {
         const viewblog = await Blog.findById(req.params.id).populate("createdBy");
-        return res.render('viewBlog', { blog: viewblog, user: req.user })
+        const comments = await Comments.find({BlogId:req.params.id}).populate("createdBy");
+        return res.render('viewBlog', { blog: viewblog, user: req.user, comments:comments })
       }
     else
     {
@@ -67,6 +69,20 @@ router.post('/', upload.single('ImageURL'), async (req, res) => {
     return res.status(500).send('An error occurred while creating the blog');
   }
 });
+
+
+router.post('/comment/:id', async(req,res)=>
+{
+   await Comments.create(
+    {
+      content:req.body.content,
+      BlogId:req.params.id,
+      createdBy:req.user._id,
+    }
+  )
+  return res.redirect(`/addBlog/${req.params.id}`)
+})
+
 
 module.exports = router;
 

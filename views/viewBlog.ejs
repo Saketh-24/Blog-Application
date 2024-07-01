@@ -13,11 +13,29 @@
         <div class="card-body">
             <p class="card-text"><%= blog.Body %></p>
         </div>
-        <div class="card-body">
+        <div class="card-body d-flex align-items-center">
+            <span style="font-size:x-large">Created By</span>
             <img src="<%= blog.createdBy.profileImageURL %>" class="card-img-top" style="max-width: 50px">
             <span style="font-size: x-large; padding-left: 3px;"><%= blog.createdBy.fullname %></span>
         </div>
     </div>
+    <h1 style="margin-left: 20px;">Comments</h1>
+    <div class="card-body container">
+        <% comments.forEach(comment => { %>
+            <div style="border: 2px solid wheat; margin-bottom: 5px;">
+                <img src="<%= comment.createdBy.profileImageURL %>" class="card-img-top" style="max-width: 30px">
+                <span style="font-size: larger;" ><%= comment.createdBy.fullname %></span>
+                <p style="margin-top:4px; margin-left: 15px; margin-bottom: 5px;"><%= comment.content %></p>
+            </div>
+        <% }) %>
+    </div>
+
+    <form action="/addBlog/comment/<%= blog._id %>" method="post">
+        <div style="margin-top: 25px; margin-bottom: 50px" class="d-flex align-items-center">
+            <input style="margin-left: 40px; display: inline; border: 2px solid black; width: 300px;" type="text" name="content" placeholder="Add comment" class="form-control" id="content" aria-describedby="ImageURL">
+            <button style="margin-left: 5px;" type="submit" class="btn btn-primary">Add</button>
+        </div>
+    </form>
     <%- include('./partials/script') %>
 </body>
 </html>
