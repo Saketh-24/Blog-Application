@@ -8,7 +8,6 @@ const BlogSchema = mongoose.Schema({
     Body:{
         type:String,
         required:true,
-        unique:true
     },
     ImageURL:{
         type:String,

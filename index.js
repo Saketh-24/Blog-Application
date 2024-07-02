@@ -31,7 +31,9 @@ app.get("/",async (req,res)=>
     res.render("home",{user:req.user,blogs:allblogs})
 })
 
-app.listen(process.env.PORT,(req,res)=>
+PORT = process.env.PORT || 8080
+
+app.listen(PORT,(req,res)=>
 {
     console.log(`app running at port ${process.env.PORT}`)
 })
